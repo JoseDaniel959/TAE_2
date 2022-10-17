@@ -288,7 +288,7 @@ with st.form("my_form"):
                 st.markdown("- Puede que se te pase la fecha de pagos de algunos créditos. Cumple a fecha con todos los créditos que tengas.")
                 st.markdown("- Piensa antes de solicitar un crédito.")
             
-            if(633<int(base) and int(base)<= 900):
+            if(633<int(base) and int(base)<= 850):
                 st.markdown("#### Su puntaje de crédito es excelente  \u2714\uFE0F")
                 st.markdown("- Usted se en cuentra en el percentil "+ str(percentile) + ". Esto con respecto a la población quiere decir que usted tiene un puntaje mayor al  "+ str(percentile) + '% ' + 'de las otras personas y menor al ' + str(100-percentile) + '%.')
                 st.markdown('- Felicitaciones por tus hábitos financieros, los bancos estarán encantados de prestarte plata.')
