@@ -8,7 +8,7 @@ from PIL import Image
 
 st.title('Consultar puntaje de crédito')
 
-st.markdown('## ¿Qué es el Scorecad?')
+st.markdown('## ¿Qué es el Scorecard?')
 st.markdown('Uno de los principales actividades de los bancos es el prestamo de dinero.Saber a quién prestar es un problema porque deben saber si el dinero si se les va a regresar.Por esta razón se desarolló un puntaje de crédito, el cual es un número que representa la probabilidad que el prestatario regrese el dinero al banco a tiempo.')
 
 image = Image.open('credit.png')
