@@ -55,29 +55,29 @@ with st.form("my_form"):
     ('Es Propia','Está con hipoteca', 'Es arrendada u otra opción'))
 
 
-    option_tot_cur_bal = st.text_input('Balance actual total de todas las cuentas')
+    option_tot_cur_bal = st.text_input('Balance actual total de todas las cuentas (valor en dólares)')
     
     option_dti = st.text_input('Dti del prestatario')
 
     option_inq_last_6mths = st.text_input('Número de consultas en los últimos 6 meses')
 
-    option_out_prncp = st.text_input('Capital restante pendiente por el monto total financiado') 
+    option_out_prncp = st.text_input('Capital restante pendiente por el monto total financiado (valor en dólares)') 
 
-    option_int_rate = st.text_input('Tasa de interés')
+    option_int_rate = st.text_input('Tasa de interés (de 0 a 100)')
 
     option_term = st.selectbox(
     '¿Cuál es el término del crédito (en meses)?',
     (36, 60))
 
-    option_annual_inc = st.text_input('¿Cuáles son sus ingresos anuales?')
+    option_annual_inc = st.text_input('¿Cuáles son sus ingresos anuales? (valor en dólares)')
 
-    option_revol_util = st.text_input('¿Cuál es la tasa de utilización del crédito (valores de 0 a 1)?')
+    option_revol_util = st.text_input('¿Cuál es la tasa de utilización del crédito? (valores de 0 a 1)')
 
     option_grade = st.selectbox(
     '¿Grado de préstamo asignado en la carta de crédito?',
     ('A','B','C','D','E','F','G'))
 
-    submitted = st.form_submit_button("Submit")
+    submitted = st.form_submit_button("Enviar")
 
     df = pd.read_csv('scorecard.csv')
     puntaje = pd.read_csv('y_scores.csv')
@@ -258,7 +258,7 @@ with st.form("my_form"):
             percentil_debajo = 1 - percentile        
             
             if(300<=int(base) and int(base)<= 499):
-                st.markdown("#### Su puntaje de crédito es bajo \u1F534")
+                st.markdown("#### Su puntaje de crédito es bajo \U0001f534")
                 st.markdown("- Con este puntaje no puedes sacar un crédito en el banco.")
                 st.markdown("- Usted se en cuentra en el percentil "+ str(percentile) + ". Esto con respecto a la población quiere decir que usted tiene un puntaje mayor al  "+ str(percentile) + '% ' + 'de las otras personas y menor al ' + str(100-percentile) + '% .' )
                 st.markdown("#### Algunas recomendaciones para subir el puntaje:")
@@ -290,6 +290,5 @@ with st.form("my_form"):
             
             if(633<int(base) and int(base)<= 900):
                 st.markdown("#### Su puntaje de crédito es excelente  \u2714\uFE0F")
-                st.markdown("- El banco en cualquier caso te va a dar el crédito.")
                 st.markdown("- Usted se en cuentra en el percentil "+ str(percentile) + ". Esto con respecto a la población quiere decir que usted tiene un puntaje mayor al  "+ str(percentile) + '% ' + 'de las otras personas y menor al ' + str(100-percentile) + '%.')
                 st.markdown('- Felicitaciones por tus hábitos financieros, los bancos estarán encantados de prestarte plata.')
