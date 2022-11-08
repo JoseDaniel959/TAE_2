@@ -8,6 +8,9 @@ from PIL import Image
 
 st.title('Consultar puntaje de crédito')
 
+st.markdown('- Reporte técnico: https://marloneau.quarto.pub/creacion-scorecard-para-calculo-de-puntaje-crediticio/#ajuste-del-modelo-y-realizaci%C3%B3n-de-scorecard')
+st.markdown('- Video acerca de la aplicación: https://youtu.be/pm0IFjFrN0s')
+
 st.markdown('## ¿Qué es el Scorecard?')
 st.markdown('Uno de los principales actividades de los bancos es el prestamo de dinero.Saber a quién prestar es un problema porque deben saber si el dinero si se les va a regresar.Por esta razón se desarolló un puntaje de crédito, el cual es un número que representa la probabilidad que el prestatario regrese el dinero al banco a tiempo.')
 
@@ -57,7 +60,7 @@ with st.form("my_form"):
 
     option_tot_cur_bal = st.text_input('Balance actual total de todas las cuentas (valor en dólares)')
     
-    option_dti = st.text_input('Dti del prestatario')
+    option_dti = st.text_input('Dti del prestatario (si no conoce este valor escriba NA)')
 
     option_inq_last_6mths = st.text_input('Número de consultas en los últimos 6 meses')
 
@@ -75,7 +78,7 @@ with st.form("my_form"):
 
     option_grade = st.selectbox(
     '¿Grado de préstamo asignado en la carta de crédito?',
-    ('A','B','C','D','E','F','G'))
+    ('A','B','C','D','E','F','G','No sabe'))
 
     submitted = st.form_submit_button("Enviar")
 
@@ -114,6 +117,7 @@ with st.form("my_form"):
         'E':'grade:E',
         'F':'grade:F',
         'G':'grade:G',
+        'No sabe':'grade:G',        #Si no sabe se le asigna grade:G para que no sume ni reste
 
         ###Variable term
         36:'term:36',
@@ -148,7 +152,9 @@ with st.form("my_form"):
                 base += scores_dict['tot_cur_bal:400000-500000']
             
             ###Suma option_dti
-            if float(option_dti) <= 1.6:
+            if option_dti == 'NA':      #por si no conoce su dti
+                base+=0
+            elif float(option_dti) <= 1.6:
                 base += scores_dict['dti:<=1.6']
             elif float(option_dti) <= 5.599:
                 base += scores_dict['dti:1.6-5.599']
